@@ -1,27 +1,26 @@
-# Use a fuller Python base image with apt support
 FROM python:3.11
 
-# Environment settings
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+# Prevent interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Set working directory
 WORKDIR /app
 
-# Install FFmpeg and other system deps
+# Install FFmpeg and system tools
 RUN apt-get update && \
-    apt-get install -y ffmpeg gcc libpq-dev && \
-    apt-get clean
+    apt-get install -y ffmpeg curl wget gnupg2 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-# Copy project files
+# Copy app code
 COPY . /app/
 
 # Install Python dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Expose port for gunicorn
+# Expose port for Gunicorn
 EXPOSE 8000
 
-# Start the Flask app with Gunicorn
+# Start the app using Gunicorn
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
