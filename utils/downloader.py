@@ -8,10 +8,13 @@ def download_video(url, format_choice, output_path):
         filename = f"{uid}.{format_choice}"
         filepath = os.path.join(output_path, filename)
 
+        ffmpeg_path = "/usr/bin/ffmpeg"
+
         if format_choice == 'mp3':
             ydl_opts = {
                 'format': 'bestaudio/best',
                 'outtmpl': filepath,
+                'ffmpeg_location': ffmpeg_path,
                 'postprocessors': [{
                     'key': 'FFmpegExtractAudio',
                     'preferredcodec': 'mp3',
@@ -24,6 +27,7 @@ def download_video(url, format_choice, output_path):
             ydl_opts = {
                 'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4',
                 'outtmpl': filepath,
+                'ffmpeg_location': ffmpeg_path,
                 'postprocessors': [{
                     'key': 'FFmpegVideoReencoder',
                     'preferredformat': 'mp4',
