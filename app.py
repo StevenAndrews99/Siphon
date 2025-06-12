@@ -80,6 +80,20 @@ def cleanup_old_files(folder_path, max_age_seconds=3600):
                 except Exception as e:
                     print(f"Error deleting {filename}: {e}")
 
+import subprocess
+from flask import Response
+
+@app.route("/debug_ffmpeg")
+def debug_ffmpeg():
+    try:
+        result = subprocess.run(["ffmpeg", "-version"], capture_output=True, text=True)
+        if result.returncode == 0:
+            return Response(f"<pre>{result.stdout}</pre>", mimetype="text/html")
+        else:
+            return Response(f"<pre>FFmpeg not found:\n{result.stderr}</pre>", mimetype="text/html")
+    except Exception as e:
+        return Response(f"<pre>Error running ffmpeg:\n{str(e)}</pre>", mimetype="text/html")
+
 if __name__ == '__main__':
     if not os.path.exists(DOWNLOAD_FOLDER):
         os.makedirs(DOWNLOAD_FOLDER)
