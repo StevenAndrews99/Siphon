@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Preparing Download</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+    <!-- This redirects after 3 seconds -->
+    <meta http-equiv="refresh" content="3;url=/downloads/{{ filename }}">
+    
+    <style>
+        .fallback-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #00a19a;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Preparing your download...</h2>
+        <div class="fallback-spinner"></div>
+        <p>Your download will begin shortly.</p>
+    </div>
+</body>
+</html>

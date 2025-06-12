@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Siphon - Download Videos as MP3/MP4</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Oswald:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 🌐 Header -->
+    <header>
+        <div class="logo">SIPHON</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">FAQ</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <!-- 🎯 Main Section -->
+    <main>
+        <section class="hero">
+            <h1 class="headline">Download videos from YouTube, TikTok, and Instagram</h1>
+            <p class="subheadline">Convert any video to MP3 or MP4 — quick, clean, and free.</p>
+
+            <form action="/download" method="post">
+                <input type="text" name="youtube_url" placeholder="Paste a video URL..." required oninput="detectPlatform(this.value)">
+                <select name="format">
+                    <option value="mp4">MP4 (Video)</option>
+                    <option value="mp3">MP3 (Audio)</option>
+                </select>
+
+                <div id="platform-info" class="info-text"></div>
+                <div id="loading" class="info-text" style="display: none;">Fetching video info...</div>
+
+                <div id="video-metadata" style="margin-top: 20px; display: none;">
+                    <img id="video-thumbnail" src="" alt="Thumbnail" class="thumbnail" />
+                    <div><strong>Title:</strong> <span id="video-title"></span></div>
+                    <div><strong>Duration:</strong> <span id="video-duration"></span> seconds</div>
+                </div>
+
+                <button type="submit">Download</button>
+            </form>
+
+            <div id="download-loading" style="display: none; margin-top: 15px;">
+                <div class="spinner"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 📎 Footer -->
+    <footer>
+        <p>&copy; 2025 Siphon • Built for personal use • <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
