@@ -15,6 +15,7 @@ def download_video(url, format_choice, output_path):
                 'format': 'bestaudio/best',
                 'outtmpl': filepath,
                 'ffmpeg_location': ffmpeg_path,
+                'cookiefile': 'cookies/youtube_cookies.txt',
                 'postprocessors': [{
                     'key': 'FFmpegExtractAudio',
                     'preferredcodec': 'mp3',
