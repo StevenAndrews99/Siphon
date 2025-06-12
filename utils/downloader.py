@@ -29,8 +29,8 @@ def download_video(url, format_choice, output_path):
                 'outtmpl': filepath,
                 'ffmpeg_location': ffmpeg_path,
                 'postprocessors': [{
-                    'key': 'FFmpegVideoReencoder',
-                    'preferredformat': 'mp4',
+                    'key': 'FFmpegVideoConvertor',
+                    'preferedformat': 'mp4',
                 }],
                 'quiet': True,
             }
