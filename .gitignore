@@ -1,3 +1,8 @@
-cookies/cookies.txt
-*.mkv
+# Ignore the original cookies file and all cookies folder contents
+cookies/
 
+# Ignore base64-encoded cookies file
+cookies_b64.txt
+
+# Ignore large video files
+*.mkv
