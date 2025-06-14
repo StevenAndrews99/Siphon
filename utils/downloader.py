@@ -9,13 +9,15 @@ def download_video(url, format_choice, output_path):
         filepath = os.path.join(output_path, filename)
 
         ffmpeg_path = "/usr/bin/ffmpeg"
+        # ffmpeg_path = "C:/Users/Steve/OneDrive/Desktop/Siphon/ffmpeg/ffmpeg-7.1.1-essentials_build/bin/ffmpeg.exe"
+        cookies_path = "cookies/cookies.txt"
 
         if format_choice == 'mp3':
             ydl_opts = {
                 'format': 'bestaudio/best',
                 'outtmpl': filepath,
                 'ffmpeg_location': ffmpeg_path,
-                'cookiefile': 'cookies/youtube_cookies.txt',
+                'cookiefile': cookies_path,
                 'postprocessors': [{
                     'key': 'FFmpegExtractAudio',
                     'preferredcodec': 'mp3',
@@ -29,8 +31,9 @@ def download_video(url, format_choice, output_path):
                 'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4',
                 'outtmpl': filepath,
                 'ffmpeg_location': ffmpeg_path,
+                'cookiefile': cookies_path,
                 'postprocessors': [{
-                    'key': 'FFmpegVideoConvertor',
+                    'key': 'FFmpegVideoConvertor',  # ✅ This works across all setups
                     'preferedformat': 'mp4',
                 }],
                 'quiet': True,
@@ -46,4 +49,5 @@ def download_video(url, format_choice, output_path):
 
     except Exception as e:
         return None, str(e)
+
 
