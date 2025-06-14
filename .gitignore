@@ -6,3 +6,5 @@ cookies_b64.txt
 
 # Ignore large video files
 *.mkv
+
+downloads/
